@@ -1,0 +1,174 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "ajou.subchill.web.PartyController"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_2076238108 { 
+   	label=subchill
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_133026219 { 
+   	label=service
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   PartyStartService955791850[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PartyStartService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   memberwaitRepository: MemberWaitRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   partyinfosRepository: PartyInfosRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   partyrolesRepository: PartyRolesRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   partywaitRepository: PartyWaitRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Matching(mav: ModelAndView, ROLE: String, authentication: Authentication)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ RoleSaving(mav: ModelAndView, ROLE: String, authentication: Authentication): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkWaitList(mav: ModelAndView, ROLE: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ countmembers(SN: String, SP: String, WM: Integer, ROLE: String): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getWAITPARTY(mav: ModelAndView)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makeMEMWAIT(mav: ModelAndView, ROLE: String, authentication: Authentication): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ makePARTY(mav: ModelAndView, ROLE: String, WorM: String, authentication: Authentication): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchPosts1(keyword: String): List&lt;PARTYROLES&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchPosts2(keyword: String): List&lt;PARTYINFOS&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCapacity(mav: ModelAndView, Capacity: Integer, GorL: String): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserService955791850[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userRepository: UserRepository [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ 이메일중복체크(email: String): User</TD></TR>
+<TR><TD ALIGN="LEFT" >+ 회원가입(name: String, phoneNumber: String, email: String, userId: String, password: String): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2343242 { 
+   	label=web
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   PartyController49422601[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PartyController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   party1Service: PartyStartService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   partyinfosRepository: PartyInfosRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   partyrolesRepository: PartyRolesRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userService: UserService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ CheckPartyregister(authentication: Authentication, model: Model): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ PartyLeaderregister(leader: String, WAIT_CAPACITY: Integer, WAIT_SHARE_ID: String, WAIT_SHARE_PW: String, mav: ModelAndView, authentication: Authentication): ModelAndView</TD></TR>
+<TR><TD ALIGN="LEFT" >+ PartyMemberregister(mav: ModelAndView, authentication: Authentication): ModelAndView</TD></TR>
+<TR><TD ALIGN="LEFT" >+ PartyNewregister(nickname: String, SERVICE_NAME: String, SUBSCRIBE_PAYMENT: String, WAIT_MONTHS: Integer, mov: ModelAndView): ModelAndView</TD></TR>
+<TR><TD ALIGN="LEFT" >+ PartyRoletoLeader(mav: ModelAndView): ModelAndView</TD></TR>
+<TR><TD ALIGN="LEFT" >+ PartyRoletoMember(mav: ModelAndView): ModelAndView</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+PartyController49422601 -> PartyStartService955791850[label="party1Service
+[0..1]"];
+PartyController49422601 -> UserService955791850[label="userService
+[0..1]"];
+    
+}
+@enduml
